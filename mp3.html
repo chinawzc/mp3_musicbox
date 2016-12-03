@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>mp3</title>
+	<link rel="stylesheet" href="mp3.css">
+	<script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+	<!-- <script type="text/javascript" src="js/mp.js"></script> -->
+</head>
+
+<body>
+	<div class="container">
+		<div class="circle">
+			<img src="img/img.jpg" alt="">
+			<img src="img/j1.jpg" alt="">
+			<img src="img/j2.jpg" alt="">
+			<img src="img/j3.jpg" alt="">
+			<img src="img/j1.jpg" alt="">
+			<img src="img/j2.jpg" alt="">
+			<img src="img/j2.jpg" alt="">
+			<img src="img/j3.jpg" alt="">
+			<img src="img/j1.jpg" alt="">
+			<img src="img/j2.jpg" alt="">
+			<img src="img/j3.jpg" alt="">
+			<img src="img/j1.jpg" alt="">
+			<img src="img/j2.jpg" alt="">
+			<img src="img/j3.jpg" alt="">
+			<img src="img/j1.jpg" alt="">
+			<img src="img/j2.jpg" alt="">
+			<img src="img/j2.jpg" alt="">
+			<img src="img/j3.jpg" alt="">
+			<img src="img/j1.jpg" alt="">
+			<img src="img/j2.jpg" alt="">
+			<img src="img/j3.jpg" alt="">
+		</div>
+		<img class="cd_tou" src="img/cd_tou.png" alt="">
+		<ul class="song">
+			<li class="list">1演员</li>
+			<li class="list">2丑八怪</li>
+			<li class="list">3绅士</li>
+			<li class="list">4一半</li>
+			<li class="list">5认真的雪</li>
+			<li class="list">6Faded</li>
+			<li class="list">7Animals</li>
+			<li class="list">8Love Me Like You Do</li>
+			<li class="list">9杀猪刀</li>
+			<li class="list">10邻家的龙猫</li>
+			<li class="list">11和兰花在一起</li>
+			<li class="list">12欢乐颂</li>
+			<li class="list">13卡农</li>
+			<li class="list">14All About That Bass</li>
+			<li class="list">15Animals</li>
+			<li class="list">16出埃及记</li>
+			<li class="list">17Worth It</li>
+			<li class="list">18安妮的仙境</li>
+			<li class="list">19The Truth That You Leave</li>
+			<span class="singer">薛之谦<span class="album">专辑：绅士</span></span>
+		</ul>
+
+		<div class="songs">
+			<a href="#">MP3</a>
+			<a href="#">好</a>
+			<a href="#">音</a>
+			<a href="#">乐</a>
+		</div>
+		<div class="run">
+			<a id="next"></a>
+			<a id="pause"></a>
+			<a id="pre"></a>
+			<a id="rfre"></a>
+			<a id="shuffle"></a>
+			<div id="autime"></div>
+			<!-- <a id="minus">-</a> -->
+			<a id="vol">
+				<img src="img/v2.png" alt="">
+			</a>
+			<a id="musiclist"></a>
+			<div id="mlist">
+				<div class="mltop">播放队列(<span></span>首)</div>
+				<ul>
+					<a><li>1演员</li></a>
+					<a><li>2丑八怪</li></a>
+					<a><li>3绅士</li></a>
+					<a><li>4一半</li></a>
+					<a><li>5认真的雪</li></a>
+					<a><li>6Faded</li></a>
+					<a><li>7Animals</li></a>
+					<a><li>8Love Me Like You Do</li></a>
+					<a><li>9杀猪刀</li></a>
+					<a><li>10邻家的龙猫</li></a>
+					<a><li>11和兰花在一起</li></a>
+					<a><li>12欢乐颂</li></a>
+					<a><li>13卡农</li></a>
+					<a><li>14All About That Bass</li></a>
+					<a><li>15Animals</li></a>
+					<a><li>16出埃及记</li></a>
+					<a><li>17Worth It</li></a>
+					<a><li>18安妮的仙境</li></a>
+					<a><li>19The Truth That You Leave</li></a>
+				</ul>
+			</div>
+
+			<div id="volbarbox">
+				<div id="volbar"></div>
+
+			</div>
+			<!-- <a id="plus">+</a> -->
+			<div id="barbox">
+				<div id="bar"></div>
+				<div id="ball"></div>
+			</div>
+			<audio>
+				<source class="sour" src="music/演员 - 薛之谦.mp3"/>
+			</audio>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$("audio").get(0).play();
+
+		//暂停、播放
+		var r = 1; // 1是播放-1是暂停
+		$("#pause").click(function() {
+			if (r == 1) {
+				$("audio").get(0).pause();
+				//$(".cd_tou").css({"animation-play-state":"paused"});
+				$(".cd_tou").css({
+					"animation-name": "lr2"
+				});
+				$(".circle").css({
+					"animation-play-state": "paused"
+				});
+				$("#pause").css('background', 'url(img/pause.png)');
+				r *= -1;
+			} else {
+				$("audio").get(0).play();
+				// $(".cd_tou").css({"animation-play-state":"running"});
+				$(".cd_tou").css({
+					"animation-name": "lr"
+				});
+				$(".circle").css({
+					"animation-play-state": "running"
+				});
+				$("#pause").css('background', 'url(img/run.png)');
+				r *= -1;
+			}
+		})
+
+		//刷新
+		$("#rfre").click(function() {
+			auplay()
+		})
+
+
+		//歌曲切换
+		var sty = 1; //sty=1为顺序播放
+		var curr = 0;
+		var sSrc = ["music/演员 - 薛之谦.mp3", "music/丑八怪 - 薛之谦.mp3", "music/绅士 - 薛之谦.mp3",
+			"music/一半 - 薛之谦.mp3", "music/认真的雪薛之谦.mp3", "music/Alan Walker - Faded.mp3",
+			"music/Maroon 5 - Animals.mp3", "music/Ellie Goulding - Love Me Like You Do.mp3",
+			"music/杨浩龙 - 杀猪刀.mp3", "music/久石譲 (Joe Hisaishi)(邻家的龙猫).mp3",
+			"music/Yanni - 和兰花在一起.mp3", "music/Richard Clayderman - 欢乐颂.mp3", "music/Pure Music - 卡农.mp3",
+			"music/Meghan Trainor - All About That Bass.mp3", "music/Martin Garrix - Animals.mp3",
+			"music/Maksim Mrvica - 出埃及记.mp3", "music/Fifth Harmony - Worth It.mp3", "music/Bandari - 安妮的仙境.mp3",
+			"music/高至豪 - The Truth That You Leave (钢琴曲).mp3"
+		];
+		$(".circle").find("img").eq(0).addClass("imgshow");
+		$(".list").eq(0).addClass("show");
+
+
+
+
+		//下一首
+		$("#next").click(function() {
+			switch (sty) {
+				case 1:
+					curr++;
+					break;
+				case 2:
+					var a = Math.floor(Math.random() * 19);
+					curr = a;
+					break;
+				case 3:
+					curr = curr;
+					break;
+			}
+			auplay();
+		})
+
+		//上一首
+		$("#pre").click(function() {
+			switch (sty) {
+				case 1:
+					curr--;
+					break;
+				case 2:
+					var a = Math.floor(Math.random() * 19);
+					curr = a;
+					break;
+				case 3:
+					curr = curr;
+					break;
+			}
+			auplay()
+		});
+
+		//随机
+		$("#shuffle").click(function() {
+			sty += 1;
+			if (sty == 4) {
+				sty = 1
+			};
+			if (sty == 0) {
+				sty = 3
+			}
+			switch (sty) {
+				case 1:
+					$("#shuffle").css('background', 'url(img/seque.png)');
+					break;
+				case 2:
+					$("#shuffle").css('background', 'url(img/shuffle.png)');
+					break;
+				case 3:
+					$("#shuffle").css('background', 'url(img/single.png)');
+					break;
+			}
+			// var a=Math.floor(Math.random()*4);
+			// curr=a;
+			// auplay()
+		})
+
+
+		//播放第curr个
+		function auplay() {
+			if (curr < 0) {
+				curr = 18
+			};
+			if (curr > 18) {
+				curr = 0
+			};
+			$(".sour").attr('src', sSrc[curr]);
+			$(".list").eq(curr).addClass("show");
+			$(".list").eq(curr).siblings().removeClass("show");
+			$(".circle").find("img").eq(curr).addClass("imgshow");
+			$(".circle").find("img").eq(curr).siblings().removeClass("imgshow");
+			$("audio").get(0).load();
+			if (r == 1) {
+				$("audio").get(0).play();
+			}
+		}
+
+		//显示时间和进度条和歌曲结束时的播放
+		var timer = setInterval(function() {
+			var min = Math.floor(parseInt($("audio").get(0).currentTime) / 60);
+			var sec = parseInt($("audio").get(0).currentTime) % 60;
+			var dmin = Math.floor(parseInt($("audio").get(0).duration) / 60);
+			var dsec = parseInt($("audio").get(0).duration) % 60;
+			var timeratio = parseInt($("audio").get(0).currentTime) / parseInt($("audio").get(0).duration);
+			var b = 200 * timeratio;
+			if (sec < 10 && dsec < 10) {
+				$("#autime").html(min + ":" + "0" + sec + "/" + dmin + ":" + "0" + dsec)
+			}
+			if (sec < 10 && dsec > 10) {
+				$("#autime").html(min + ":" + "0" + sec + "/" + dmin + ":" + dsec)
+			}
+			if (sec > 10 && dsec < 10) {
+				$("#autime").html(min + ":" + sec + "/" + dmin + ":" + "0" + dsec)
+			}
+			if (sec > 10 && dsec > 10) {
+				$("#autime").html(min + ":" + sec + "/" + dmin + ":" + dsec);
+			}
+			$("#bar").get(0).style.width = b + "px";
+			$("#ball").get(0).style.left = b - 6 + "px";
+			$("#volbar").get(0).style.height = $("audio").get(0).volume * 80 + "px";
+			$("#mlist").find("a").eq(curr).find('li').css('color', 'red');
+			$("#mlist").find("a").eq(curr).siblings().find('li').css('color', '#fff');
+			if (timeratio >= 0.999) {
+				document.onmousemove = null;
+			};
+	    	$('.mltop>span').html($("#mlist").find('li').length);
+			volimg();
+			if (timeratio == 1) {
+				//alert(sty);
+				//alert(timeratio);
+				switch (sty) {
+					case 1:
+						curr++;
+						break;
+					case 2:
+						var a = Math.floor(Math.random() * 19);
+						curr = a;
+						break;
+					case 3:
+						curr = curr;
+						break;
+				}
+				auplay()
+			}
+		}, 50);
+
+		//点击进度条
+		$("#barbox").click(function(e) {
+				e = e || window.event;
+				var x = e.pageX;
+				var y = $(this).offset().left;
+				var etime = ((x - y) / 200) * $("audio").get(0).duration;
+				$("audio").get(0).currentTime = etime;
+			})
+			//拖动进度条
+		$("#ball").mousedown(function(e) {
+			e = e || window.event;
+			var y3 = $("#barbox").offset().left;
+			document.onmousemove = function(evt) {
+				evt = evt || window.event;
+				var evttime = ((evt.clientX - y3) / 200) * $("audio").get(0).duration;
+				$("audio").get(0).currentTime = evttime;
+			}
+		})
+		document.onmouseup = function() {
+				//alert(1)
+				document.onmousemove = null;
+			}
+			//静音
+		$("#vol").click(function() {
+			//var convol=$("audio").get(0).volume
+			if ($("audio").get(0).volume > 0.001) {
+				$("audio").get(0).volume = 0;
+				volimg()
+			} else {
+				$("audio").get(0).volume = 0.5;
+				volimg()
+			}
+		});
+
+		//音量控制加减控制
+		$("audio").get(0).volume = 0.5;
+		$("#plus").click(function() {
+			//alert($("audio")[0].duration);
+			if ($("audio").get(0).volume < 1) {
+				$("audio").get(0).volume += 0.1;
+			}
+			volimg()
+		});
+		$("#minus").click(function() {
+			if ($("audio").get(0).volume > 0) {
+				$("audio").get(0).volume -= 0.1;
+			}
+			volimg()
+		});
+
+		//音量进度条控制
+		$("#vol").hover(function() {
+			$("#volbarbox").css('display', 'block').hover(function() {
+				$(this).css('display', 'block');
+			}, function() {
+				$(this).css('display', 'none');
+			});
+		}, function() {
+			$("#volbarbox").css('display', 'none');
+		})
+		$('#volbarbox').click(function(e) {
+				e = e || window.event;
+				var x2 = e.pageY;
+				var y2 = $(this).offset().top;
+				$("audio").get(0).volume = (y2 + 80 - x2) / 80;
+			})
+			//音量大小图片
+		function volimg() {
+			if ($("audio").get(0).volume == 0) {
+				$('#vol').find('img').attr('src', 'img/v0.png')
+			}
+			if ($("audio").get(0).volume > 0 && $("audio").get(0).volume <= 0.35) {
+				$('#vol').find('img').attr('src', 'img/v1.png')
+			}
+			if ($("audio").get(0).volume > 0.35 && $("audio").get(0).volume <= 0.7) {
+				$('#vol').find('img').attr('src', 'img/v2.png')
+			}
+			if ($("audio").get(0).volume > 0.7) {
+				$('#vol').find('img').attr('src', 'img/v3.png')
+			}
+		}
+		//播放列表点击选择
+		var mlistshow = false;
+		$('#musiclist').click(function() {
+			if (mlistshow == false) {
+				$('#mlist').css('display', 'block');
+					mlistshow = true
+			}else if (mlistshow == true) {
+				$('#mlist').css('display', 'none');
+					mlistshow = false
+			}
+		});
+		//
+		// $('body').find('*').not("#musiclist").click(function() {
+		// 	if (mlistshow == true) {
+		// 		//alert(1)
+		// 		$('#mlist').css('display', 'none');
+		// 		mlistshow = false
+		// 	};
+		// });
+
+		$("#mlist").find('a').each(function() {
+			$(this).click(function() {
+				var index = $(this).index();
+				curr = index;
+				auplay()
+			});
+		})
+
+
+
+
+	</script>
+
+</body>
+
+</html>

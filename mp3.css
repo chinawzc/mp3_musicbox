@@ -1,0 +1,414 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+a{
+	text-decoration: none;
+	color: #fff;
+}
+a:hover{
+	cursor: pointer;
+}
+li{
+	list-style: none;
+}
+.container{
+	width: 900px;
+	height: 537px;
+	background: -webkit-gradient(linear,right top, left top, from(#E51AE3),to(#872BE9));
+    border: 1px solid #E51AE3;
+    margin:30px auto;
+    position: relative;
+    box-sizing: border-box;
+}
+.circle{
+	width: 260px;
+	height: 260px;
+	border:1px solid #260808;
+	border-radius: 50%;
+	position: absolute;
+	left: 111px;
+	top: 80px;
+	background:#260808;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation:cc 5s linear  infinite ;
+	-webkit-animation:cc 5s linear  infinite ;
+}
+.circle img{
+	width: 144px;
+	height: 144px;
+	border-radius: 50%;
+	display: none;
+}
+.container .circle .imgshow{
+	display: block;
+}
+.cd_tou{
+	width: 52px;
+	height: 160px;
+	position: absolute;
+	left: 346px;
+	top: 79px;
+	-webkit-transform:rotate(-12deg);
+	transform:rotate(-12deg);
+	-webkit-transform-origin: top right;
+	transform-origin: top right;
+	animation:lr 1s linear 1;
+	-webkit-animation:lr 1s linear 1 ;
+	animation-fill-mode:forwards;
+	-webkit-animation-fill-mode:forwards;
+	/*animation-play-state: paused;*/
+}
+@-webkit-keyframes lr{
+	0% {-webkit-transform:rotate(-12deg);}
+	50% {-webkit-transform: rotate(-2deg);}
+	100% {-webkit-transform: rotate(8deg);}
+}
+@keyframes lr{
+	0% {transform:rotate(-12deg);}
+	50% {transform: rotate(-2deg);}
+	100% {transform: rotate(8deg);}
+}
+
+@-webkit-keyframes lr2{
+	0% {-webkit-transform:rotate(8deg);}
+	50% {-webkit-transform: rotate(-2deg);}
+	100% {-webkit-transform: rotate(-12deg);}
+}
+@keyframes lr2{
+	0% {transform:rotate(8deg);}
+	50% {transform: rotate(-2deg);}
+	100% {transform: rotate(-12deg);}
+}
+
+
+
+
+
+
+
+@-webkit-keyframes cc{
+	0% {-webkit-transform:rotate(0deg);}
+	50% {-webkit-transform: rotate(180deg);}
+	100% {-webkit-transform: rotate(360deg);}
+}
+@keyframes cc{
+	0% {transform:rotate(0deg);}
+	50% {transform: rotate(180deg);}
+	100% {transform: rotate(360deg);}
+}
+.song{
+	width: 130px;
+	height: 96px;
+	font-size: 34px;
+	line-height: 60px;
+	color: #fff;
+	position: absolute;
+	right: 198px;
+	top: 126px;
+	text-align: center;
+	font-weight:bold;
+}
+.song li{
+	position: absolute;
+	left: -185px;
+	width: 500px;
+	display: none;
+	text-align: center;
+}
+
+.song .show{
+
+	display: block;
+}
+.song .singer{
+	position: absolute;
+	bottom: 0;
+	display: block;
+	height: 36px;
+	width: 130px;
+	font-size: 18px;
+	line-height: 36px;
+	text-indent: 4px;
+}
+.song .singer .album{
+	display: block;
+	height: 36px;
+	width: 70px;
+	float: right;
+	font-size: 12px;
+	line-height: 36px;
+	text-align: center;
+}
+
+.songs{
+	width: 900px;
+	height: 60px;
+	position: absolute;
+	bottom: 66px;
+	left:0;
+	display: flex;
+	justify-content: center;
+}
+.songs a{
+	width: 120px;
+	height: 60px;
+	border:1px solid #fff;
+	border-radius: 4px;
+	opacity: 0.7;
+	margin: 0 10px;
+	text-align: center;
+	font-size: 40px;
+	line-height: 60px;
+}
+
+
+.run{
+	width:325px;
+	height:80px;
+	position:absolute;
+	top: 228px;
+	right: 91px;
+
+}
+#pre{
+	width:16px;
+	height: 16px;
+	background:url(img/pre.png);
+	position:absolute;
+	left:10px;
+	top: 12px;
+
+}
+#pause{
+	width:13px;
+	height: 15px;
+	background:url(img/run.png);
+	position:absolute;
+	left:41px;
+	top: 12px;
+}
+#next{
+	width:16px;
+	height: 16px;
+	background:url(img/next.png);
+	position:absolute;
+	left:72px;
+	top: 12px;
+}
+#rfre{
+	width:16px;
+	height: 16px;
+	background:url(img/refresh.png);
+	position:absolute;
+	left:185px;
+	top: 12px;
+}
+#shuffle{
+	width:16px;
+	height: 16px;
+	background:url(img/seque.png);
+	position:absolute;
+	left:211px;
+	top: 12px;
+}
+#minus{
+	width:16px;
+	height:16px;
+	font-size:16px;
+	line-height；16px;
+	position:absolute;
+	left:221px;
+	top: 12px;
+	color:#fff;
+}
+#plus{
+	width:16px;
+	height:18px;
+	font-size:16px;
+	line-height；16px;
+	position:absolute;
+	left:260px;
+	top: 12px;
+	color:#fff;
+}
+#vol{
+	width:16px;
+	height:20px;
+	position:absolute;
+	left:238px;
+	top: 8px;
+	/*background: red;*/
+}
+#vol img{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+#musiclist{
+	width:16px;
+	height:16px;
+	position:absolute;
+	left:260px;
+	top: 13px;
+	background: url(img/musiclist.png);
+} #mlist{
+	width: 120px;
+	height: 285px;
+	background: rgb(208, 26, 173);
+	opacity: 0.5;
+	position: absolute;
+	left: 276px;
+	top: 11px;
+	display: none;
+}
+ #mlist .mltop{
+	width: 120px;
+	height: 20px;
+	border-bottom: 1px solid #fff;
+	font-size: 12px;
+	line-height: 20px;
+	text-align: center;
+	background: rgb(191, 58, 146);
+	position: absolute;
+	left: 0;
+	top: 0;
+
+}
+ #mlist ul{
+	width: 120px;
+	height:264px;
+	box-sizing: border-box;
+	position: absolute;
+	top:21px;
+	left: 0;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+::-webkit-scrollbar
+{
+    width: 6px;
+}
+::-webkit-scrollbar-track
+{
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: rgb(43, 241, 117);
+}
+
+#mlist li{
+	width: 120px;
+	height: 22px;
+	font-size: 12px;
+	line-height: 22px;
+	text-indent: 8px;
+	color: #fff;
+	overflow: hidden;
+}
+ #mlist li:hover{
+	background: rgb(171, 39, 130);
+}
+
+#volbarbox{
+	width: 6px;
+	height: 80px;
+	border: 2px solid #fff;
+	border-radius: 3px;
+	position: absolute;
+	left: 242px;
+	top:-74px;
+	display: none;
+}
+#volbarbox #volbar{
+	width: 6px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: rgb(58, 215, 64);
+}
+
+#autime{
+	width: 50px;
+	height: 8px;
+	position: absolute;
+	left: 10px;
+	top: 40px;
+	font-size: 8px;
+	line-height: 8px;
+	color: #fff;
+}
+#barbox{
+	width: 200px;
+	height: 8px;
+	border-radius: 4px;
+	position: absolute;
+	left: 75px;
+	top: 40px;
+	background: #727272;
+}
+#barbox #bar{
+	height: 8px;
+	border-radius: 4px 0 0 4px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background: #fff;
+}
+#barbox #ball{
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	top:-2px;
+	background:#90eb1d;
+	border-radius: 50%;
+	box-shadow: 2px 0 3px rgba(33, 217, 189, 0.69),0px 2px 3px rgba(33, 217, 189, 0.69),
+							-2px 0 3px rgba(33, 217, 189, 0.69),0px -2px 3px rgba(33, 217, 189, 0.69);
+}
+
+
+
+audio{
+	position: absolute;
+	bottom: -200px;
+
+}
+audio .slist{
+	display: none;
+}
+
+audio source{
+	background: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+#jiance{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background: #ff0;
+}
+#j1{
+	width: 20px;
+	height: 20px;
+	background: red;
+}
+
+/*bbb*/
